@@ -6,19 +6,11 @@ using UnityEngine.UI;
 public class HealthController : MonoBehaviour
 {
     public Slider healthBar;
-    private float health;
 
-    void Start()
+    public float TakeDamage(float health, float damage)
     {
-        health = transform.GetComponent<EnemyController>().Health;
-    }
-
-    void Update()
-    {
-        if (Input.GetKeyDown(KeyCode.Space))
-        {
-            health -= 10;
-            healthBar.value = health;
-        }
+        health -= damage;
+        healthBar.value = health;
+        return health;
     }
 }
