@@ -6,7 +6,7 @@ using UnityEngine.AI;
 public class PatrolBehaviour : MonoBehaviour
 {
     public List<Transform> Waypoints;
-    public float minDistanceToWaypoint = 1f;
+    public float MinDistanceToWaypoint = 1f;
     private NavMeshAgent _agent;
 
     private void Awake()
@@ -24,7 +24,7 @@ public class PatrolBehaviour : MonoBehaviour
 
     private bool HasArrivedToWaypoint()
     {
-        return _agent.remainingDistance < minDistanceToWaypoint;
+        return _agent.remainingDistance < MinDistanceToWaypoint;
     }
 
     private Transform GetRandomWaypoint()
