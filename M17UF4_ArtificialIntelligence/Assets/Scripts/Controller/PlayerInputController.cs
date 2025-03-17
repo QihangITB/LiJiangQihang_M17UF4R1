@@ -5,8 +5,10 @@ using UnityEngine.InputSystem;
 
 public class PlayerInputController : MonoBehaviour, InputControllers.IPlayerActions
 {
+    public Transform Camera;
     private InputControllers _ic;
-    private Vector2 _movement;
+    private Vector2 _movementP;
+    private Vector2 _cameraP;
     private Rigidbody _rb;
 
     public float Speed = 5f;
@@ -29,25 +31,28 @@ public class PlayerInputController : MonoBehaviour, InputControllers.IPlayerActi
 
     private void FixedUpdate()
     {
-        Vector3 move = new Vector3(_movement.x, 0, _movement.y);
+        // _movementP.y es como el eje Z pero en 2D
+        _rb.velocity = new Vector3(_movementP.x * Speed, _rb.velocity.y, _movementP.y * Speed);
 
-        _rb.velocity = new Vector3(move.x * Speed, _rb.velocity.y, move.z * Speed); // Conservamos la velocidad en Y
+        // Rotar la cámara
+        Camera.Rotate(Vector3.up, _cameraP.x);
     }
 
     void InputControllers.IPlayerActions.OnMove(InputAction.CallbackContext context)
     {
         if (context.performed)
         {
-            _movement = context.ReadValue<Vector2>();
+            _movementP = context.ReadValue<Vector2>();
         }
         else if (context.canceled)
         {
-            _movement = Vector2.zero;
+            _movementP = Vector2.zero;
         }
     }
 
     void InputControllers.IPlayerActions.OnLook(InputAction.CallbackContext context)
     {
-        throw new System.NotImplementedException();
+        _cameraP = context.ReadValue<Vector2>();
+        Debug.Log(_cameraP);
     }
 }

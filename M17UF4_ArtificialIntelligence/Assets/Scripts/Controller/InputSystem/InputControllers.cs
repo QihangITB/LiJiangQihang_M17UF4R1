@@ -38,9 +38,9 @@ public partial class @InputControllers: IInputActionCollection2, IDisposable
                 },
                 {
                     ""name"": ""Look"",
-                    ""type"": ""Button"",
+                    ""type"": ""PassThrough"",
                     ""id"": ""8e189375-1cce-4373-9f1a-5fc8dea59d6f"",
-                    ""expectedControlType"": ""Button"",
+                    ""expectedControlType"": ""Vector2"",
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
@@ -50,7 +50,7 @@ public partial class @InputControllers: IInputActionCollection2, IDisposable
                 {
                     ""name"": """",
                     ""id"": ""bd9e429e-da96-4e10-b21b-4329170d25e0"",
-                    ""path"": """",
+                    ""path"": ""<Mouse>/position"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
