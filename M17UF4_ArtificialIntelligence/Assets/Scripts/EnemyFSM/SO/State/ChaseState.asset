@@ -12,5 +12,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ffed69fb253b1614891e61653fa2a2e6, type: 3}
   m_Name: ChaseState
   m_EditorClassIdentifier: 
-  StartCondition: {fileID: 0}
-  EndConditions: []
+  StartCondition: {fileID: 11400000, guid: 65f87fd672a677144a925a9c079b1a80, type: 2}
+  EndConditions:
+  - {fileID: 11400000, guid: 72da12c2f2929cc498dadba13a9b6674, type: 2}
+  - {fileID: 11400000, guid: 15556a05946ad9a4c823854901406dfc, type: 2}
+  - {fileID: 11400000, guid: 65f87fd672a677144a925a9c079b1a80, type: 2}
+  - {fileID: 11400000, guid: 48980eee374148e478f54dd83d035f47, type: 2}

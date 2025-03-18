@@ -12,4 +12,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3133096707da0e44eb91bd91433ffa93, type: 3}
   m_Name: AttackRangeCondition
   m_EditorClassIdentifier: 
-  answer: 0
+  answer: 1

@@ -6,7 +6,6 @@ public class DamagedCondition : ConditionSO
 {
     public override bool CheckCondition(EnemyController ec)
     {
-        //return ec.Health <= ec.DamagedHP;
-        return false;
+        return ec.HealthController.Health <= ec.HealthController.MaxHealth/2;
     }
 }

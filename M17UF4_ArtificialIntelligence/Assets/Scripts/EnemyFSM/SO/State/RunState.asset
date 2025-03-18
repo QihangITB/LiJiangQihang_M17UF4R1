@@ -12,5 +12,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 50c2912d232f44f40a3e7336bb528e6c, type: 3}
   m_Name: RunState
   m_EditorClassIdentifier: 
-  StartCondition: {fileID: 0}
-  EndConditions: []
+  StartCondition: {fileID: 11400000, guid: 48980eee374148e478f54dd83d035f47, type: 2}
+  EndConditions:
+  - {fileID: 11400000, guid: 15556a05946ad9a4c823854901406dfc, type: 2}

@@ -16,6 +16,11 @@ public class EnemyController : MonoBehaviour
     public GameObject Target;
     public bool OnRange = false, OnAttackRange = false;
 
+    public HealthController HealthController { get => _healthC; set => _healthC = value; }
+    public ChaseBehaviour ChaseBehaviour { get => _chaseB; set => _chaseB = value; }
+    public PatrolBehaviour PatrolBehaviour { get => _patrolB; set => _patrolB = value; }
+
+
     void Start()
     {
         InitializeComponent();
@@ -61,6 +66,8 @@ public class EnemyController : MonoBehaviour
         _healthC = GetComponent<HealthController>();
         _chaseB = GetComponent<ChaseBehaviour>();
         _patrolB = GetComponent<PatrolBehaviour>();
+
+        _currentNode = Nodes[Nodes.Count - 1];
     }
 
     public void CheckEndingConditions()

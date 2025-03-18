@@ -12,4 +12,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 45324c1cd2ae6d14e9de3291ac6ce63e, type: 3}
   m_Name: DeadCondition
   m_EditorClassIdentifier: 
-  answer: 0
+  answer: 1

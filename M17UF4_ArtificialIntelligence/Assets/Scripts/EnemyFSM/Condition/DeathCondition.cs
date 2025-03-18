@@ -6,7 +6,6 @@ public class DeathConditionSO : ConditionSO
 {
     public override bool CheckCondition(EnemyController ec)
     {
-        float health = ec.gameObject.GetComponent<HealthController>().Health;
-        return health <= 0;
+        return ec.HealthController.Health <= 0;
     }
 }

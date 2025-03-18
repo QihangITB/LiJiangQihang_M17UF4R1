@@ -10,11 +10,11 @@ public class ChaseState : StateSO
 
     public override void OnStateExit(EnemyController ec)
     {
-        ec.GetComponent<ChaseBehaviour>().StopChasing();
+        ec.ChaseBehaviour.StopChasing();
     }
 
     public override void OnStateUpdate(EnemyController ec)
     {
-        ec.GetComponent<ChaseBehaviour>().Chase(ec.Target.transform);
+        ec.ChaseBehaviour.Chase(ec.Target.transform);
     }
 }
