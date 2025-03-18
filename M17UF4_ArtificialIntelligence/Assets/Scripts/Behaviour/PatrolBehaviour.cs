@@ -18,8 +18,14 @@ public class PatrolBehaviour : MonoBehaviour
     {
         if (HasArrivedToWaypoint())
         {
-            _agent.SetDestination(GetRandomWaypoint().position);
+            StartCoroutine(WaitAndSetDestination());
         }
+    }
+
+    private IEnumerator WaitAndSetDestination()
+    {
+        yield return new WaitForSeconds(1f);
+        _agent.SetDestination(GetRandomWaypoint().position);
     }
 
     private bool HasArrivedToWaypoint()

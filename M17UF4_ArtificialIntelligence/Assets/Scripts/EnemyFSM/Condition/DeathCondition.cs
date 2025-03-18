@@ -6,6 +6,6 @@ public class DeathConditionSO : ConditionSO
 {
     public override bool CheckCondition(EnemyController ec)
     {
-        return ec.HealthController.Health <= 0;
+        return ec.HealthC.Health <= 0;
     }
 }

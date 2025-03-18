@@ -6,15 +6,17 @@ public class RunState : StateSO
 {
     public override void OnStateEnter(EnemyController ec)
     {
+        Debug.Log("Start Run");
     }
 
     public override void OnStateExit(EnemyController ec)
     {
-        ec.ChaseBehaviour.StopChasing();
+        Debug.Log("Exit Run");
+        ec.ChaseB.StopChasing();
     }
 
     public override void OnStateUpdate(EnemyController ec)
     {
-        ec.ChaseBehaviour.Run(ec.Target.transform);
+        ec.ChaseB.Run(ec.Target.transform);
     }
 }

@@ -6,6 +6,7 @@ using static UnityEngine.GraphicsBuffer;
 
 public class EnemyController : MonoBehaviour
 {
+    const string PlayerTag = "Player";
     const float ReceiveDamage = 10;
 
     private HealthController _healthC;
@@ -16,9 +17,9 @@ public class EnemyController : MonoBehaviour
     public GameObject Target;
     public bool OnRange = false, OnAttackRange = false;
 
-    public HealthController HealthController { get => _healthC; set => _healthC = value; }
-    public ChaseBehaviour ChaseBehaviour { get => _chaseB; set => _chaseB = value; }
-    public PatrolBehaviour PatrolBehaviour { get => _patrolB; set => _patrolB = value; }
+    public HealthController HealthC { get => _healthC; set => _healthC = value; }
+    public ChaseBehaviour ChaseB { get => _chaseB; set => _chaseB = value; }
+    public PatrolBehaviour PatrolB { get => _patrolB; set => _patrolB = value; }
 
 
     void Start()
@@ -28,27 +29,39 @@ public class EnemyController : MonoBehaviour
 
     private void OnTriggerEnter(Collider collision)
     {
-        Target = collision.gameObject;
-        OnRange = true;
-        CheckEndingConditions();
+        if (collision.gameObject.CompareTag(PlayerTag))
+        {
+            Target = collision.gameObject;
+            OnRange = true;
+            CheckEndingConditions();
+        }
     }
 
     private void OnTriggerExit(Collider collision)
     {
-        OnRange = false;
-        CheckEndingConditions();
+        if (collision.gameObject.CompareTag(PlayerTag))
+        {
+            OnRange = false;
+            CheckEndingConditions();
+        }
     }
 
     private void OnCollisionEnter(Collision collision)
     {
-        OnAttackRange = true;
-        CheckEndingConditions();
+        if (collision.gameObject.CompareTag(PlayerTag))
+        {
+            OnAttackRange = true;
+            CheckEndingConditions();
+        }
     }
 
     private void OnCollisionExit(Collision collision)
     {
-        OnAttackRange = false;
-        CheckEndingConditions();
+        if (collision.gameObject.CompareTag(PlayerTag))
+        {
+            OnAttackRange = false;
+            CheckEndingConditions();
+        }
     }
 
     private void Update()

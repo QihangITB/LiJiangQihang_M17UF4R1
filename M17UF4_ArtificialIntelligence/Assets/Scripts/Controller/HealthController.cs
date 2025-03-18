@@ -5,9 +5,17 @@ using UnityEngine.UI;
 
 public class HealthController : MonoBehaviour
 {
-    public float MaxHealth;
     public float Health;
     public Slider HealthBar;
+
+    private float _maxHealth;
+
+    public float MaxHealth { get => _maxHealth; }
+
+    private void Start()
+    {
+        _maxHealth = Health;
+    }
 
     public void TakeDamage(float damage)
     {

@@ -16,5 +16,6 @@ public class IdleState : StateSO
 
     public override void OnStateUpdate(EnemyController ec)
     {
+        ec.PatrolB.Patrol();
     }
 }
