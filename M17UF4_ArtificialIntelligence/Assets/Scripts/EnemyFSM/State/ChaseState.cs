@@ -1,6 +1,8 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using static UnityEngine.GraphicsBuffer;
+
 [CreateAssetMenu(fileName = "ChaseState", menuName = "StatesSO/Chase")]
 public class ChaseState : StateSO
 {

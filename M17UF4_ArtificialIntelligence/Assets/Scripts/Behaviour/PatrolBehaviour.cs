@@ -6,26 +6,26 @@ using UnityEngine.AI;
 public class PatrolBehaviour : MonoBehaviour
 {
     public List<Transform> Waypoints;
-    public float MinDistanceToWaypoint = 1f;
+    public float MinDistanceToWaypoint = 0.5f;
     private NavMeshAgent _agent;
+    private bool isPatrolling = false; 
 
     private void Awake()
     {
         _agent = GetComponent<NavMeshAgent>();
     }
 
+    public void StopPatrol()
+    {
+        _agent.ResetPath();
+    }
+
     public void Patrol()
     {
-        if (HasArrivedToWaypoint())
+        if (HasArrivedToWaypoint() && !isPatrolling)
         {
             StartCoroutine(WaitAndSetDestination());
         }
-    }
-
-    private IEnumerator WaitAndSetDestination()
-    {
-        yield return new WaitForSeconds(1f);
-        _agent.SetDestination(GetRandomWaypoint().position);
     }
 
     private bool HasArrivedToWaypoint()
@@ -33,10 +33,19 @@ public class PatrolBehaviour : MonoBehaviour
         return _agent.remainingDistance < MinDistanceToWaypoint;
     }
 
+    private IEnumerator WaitAndSetDestination()
+    {
+        isPatrolling = true;
+
+        yield return new WaitForSeconds(1f);
+
+        _agent.SetDestination(GetRandomWaypoint().position);
+
+        isPatrolling = false;
+    }
+
     private Transform GetRandomWaypoint()
     {
         return Waypoints[Random.Range(0, Waypoints.Count)];
     }
-
-
 }

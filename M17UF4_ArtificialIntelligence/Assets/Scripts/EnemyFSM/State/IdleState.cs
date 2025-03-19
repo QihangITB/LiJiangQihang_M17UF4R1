@@ -12,6 +12,7 @@ public class IdleState : StateSO
     public override void OnStateExit(EnemyController ec)
     {
         Debug.Log("Exit Idle");
+        ec.PatrolB.StopPatrol();
     }
 
     public override void OnStateUpdate(EnemyController ec)

@@ -2,7 +2,6 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using static UnityEngine.GraphicsBuffer;
 
 public class EnemyController : MonoBehaviour
 {
@@ -12,6 +11,7 @@ public class EnemyController : MonoBehaviour
     private HealthController _healthC;
     private ChaseBehaviour _chaseB;
     private PatrolBehaviour _patrolB;
+    private VisionBehaviour _visionB;
     private StateSO _currentNode;
     public List<StateSO> Nodes;
     public GameObject Target;
@@ -31,9 +31,12 @@ public class EnemyController : MonoBehaviour
     {
         if (collision.gameObject.CompareTag(PlayerTag))
         {
-            Target = collision.gameObject;
-            OnRange = true;
-            CheckEndingConditions();
+            if (_visionB.IsInVision(collision.gameObject))
+            {
+                Debug.Log("Player in vision");
+                OnRange = true;
+                CheckEndingConditions();
+            }
         }
     }
 
@@ -79,6 +82,7 @@ public class EnemyController : MonoBehaviour
         _healthC = GetComponent<HealthController>();
         _chaseB = GetComponent<ChaseBehaviour>();
         _patrolB = GetComponent<PatrolBehaviour>();
+        _visionB = GetComponent<VisionBehaviour>();
 
         _currentNode = Nodes[Nodes.Count - 1];
     }

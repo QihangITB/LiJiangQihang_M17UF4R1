@@ -8,5 +8,4 @@ public class RangeCondition : ConditionSO
     {
         return ec.OnRange;
     }
-
 }
