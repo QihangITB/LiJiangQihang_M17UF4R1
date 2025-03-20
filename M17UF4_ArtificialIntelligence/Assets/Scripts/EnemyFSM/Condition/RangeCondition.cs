@@ -6,6 +6,6 @@ public class RangeCondition : ConditionSO
 {
     public override bool CheckCondition(EnemyController ec)
     {
-        return ec.OnRange;
+        return ec.OnRange && !ec.OnAttackRange;
     }
 }

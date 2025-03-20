@@ -7,12 +7,18 @@ public class PatrolBehaviour : MonoBehaviour
 {
     public List<Transform> Waypoints;
     public float MinDistanceToWaypoint = 0.5f;
+    public float WaitTime = 1f;
     private NavMeshAgent _agent;
-    private bool isPatrolling = false; 
+    private bool _isPatrolling = false; 
 
     private void Awake()
     {
         _agent = GetComponent<NavMeshAgent>();
+    }
+
+    public void StartPatrol()
+    {
+        _isPatrolling = false;
     }
 
     public void StopPatrol()
@@ -22,7 +28,7 @@ public class PatrolBehaviour : MonoBehaviour
 
     public void Patrol()
     {
-        if (HasArrivedToWaypoint() && !isPatrolling)
+        if (HasArrivedToWaypoint() && !_isPatrolling)
         {
             StartCoroutine(WaitAndSetDestination());
         }
@@ -35,13 +41,13 @@ public class PatrolBehaviour : MonoBehaviour
 
     private IEnumerator WaitAndSetDestination()
     {
-        isPatrolling = true;
+        _isPatrolling = true;
 
-        yield return new WaitForSeconds(1f);
+        yield return new WaitForSeconds(WaitTime);
 
         _agent.SetDestination(GetRandomWaypoint().position);
 
-        isPatrolling = false;
+        _isPatrolling = false;
     }
 
     private Transform GetRandomWaypoint()

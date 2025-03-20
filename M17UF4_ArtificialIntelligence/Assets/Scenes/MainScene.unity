@@ -133,7 +133,7 @@ GameObject:
   - component: {fileID: 29095068}
   - component: {fileID: 29095070}
   - component: {fileID: 29095069}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: Fill
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -803,7 +803,7 @@ Transform:
   m_GameObject: {fileID: 264433594}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: 0.45194432, z: -0, w: 0.89204615}
-  m_LocalPosition: {x: 18.52, y: 1.4913, z: 3.27}
+  m_LocalPosition: {x: 17.18, y: 1.4913, z: 1.79}
   m_LocalScale: {x: 4.7031527, y: 2.7225, z: 1.095}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -1327,7 +1327,7 @@ GameObject:
   - component: {fileID: 862458179}
   - component: {fileID: 862458178}
   - component: {fileID: 862458177}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: Canvas
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1427,7 +1427,7 @@ GameObject:
   m_Component:
   - component: {fileID: 870448213}
   - component: {fileID: 870448214}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: VisionRange
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1468,7 +1468,7 @@ SphereCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Radius: 7
+  m_Radius: 20
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &898936809
 GameObject:
@@ -1549,7 +1549,7 @@ MonoBehaviour:
   m_OverrideTileSize: 0
   m_TileSize: 256
   m_OverrideVoxelSize: 0
-  m_VoxelSize: 0.33333334
+  m_VoxelSize: 0.16666667
   m_MinRegionArea: 2
   m_NavMeshData: {fileID: 23800000, guid: ba6e21fb25968b44b8975a10c5c26db3, type: 2}
   m_BuildHeightMesh: 0
@@ -2241,7 +2241,7 @@ GameObject:
   - component: {fileID: 1409485558}
   - component: {fileID: 1409485557}
   - component: {fileID: 1409485556}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: Face
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2666,7 +2666,7 @@ GameObject:
   - component: {fileID: 1813589679}
   - component: {fileID: 1813589678}
   - component: {fileID: 1813589677}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: HealthBar
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2802,7 +2802,7 @@ GameObject:
   - component: {fileID: 1998653671}
   - component: {fileID: 1998653672}
   - component: {fileID: 1998653681}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: EnemyObj
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -3008,6 +3008,7 @@ MonoBehaviour:
   - {fileID: 1206579206}
   - {fileID: 2016325851}
   MinDistanceToWaypoint: 0.5
+  WaitTime: 2
 --- !u!114 &1998653679
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3033,6 +3034,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 904d6a46bcc7e554aab8315ee51d19a6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  VisionAngle: 90
 --- !u!114 &1998653681
 MonoBehaviour:
   m_ObjectHideFlags: 0

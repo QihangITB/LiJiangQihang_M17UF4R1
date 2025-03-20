@@ -6,7 +6,6 @@ public class DieState : StateSO
 {
     public override void OnStateEnter(EnemyController ec)
     {
-        Debug.Log("Start Die");
         Destroy(ec.gameObject);
     }
 

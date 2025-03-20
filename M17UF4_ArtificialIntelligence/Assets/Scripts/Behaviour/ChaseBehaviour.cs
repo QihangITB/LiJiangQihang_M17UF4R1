@@ -7,16 +7,18 @@ public class ChaseBehaviour : MonoBehaviour
 {
     public float Speed;
     private Rigidbody _rb;
+    private NavMeshAgent _agent;
 
     private void Awake()
     {
         _rb = GetComponent<Rigidbody>();
+        _agent = GetComponent<NavMeshAgent>();
     }
 
     // Escapa del jugador
     public void Run(Transform target)
     {
-        Vector3 direction = (transform.position - target.position).normalized;
+        Vector3 direction = (target.position - transform.position).normalized;
         direction.y = 0;
         _rb.velocity = direction * Speed;
     }
@@ -24,9 +26,7 @@ public class ChaseBehaviour : MonoBehaviour
     // Persigue al jugador
     public void Chase(Transform target)
     {
-        Vector3 direction = (target.position - transform.position).normalized;
-        direction.y = 0;
-        _rb.velocity = direction * Speed;
+        _agent.SetDestination(target.position);
     }
 
     public void StopChasing()

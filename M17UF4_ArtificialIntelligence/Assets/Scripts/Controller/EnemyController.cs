@@ -27,24 +27,11 @@ public class EnemyController : MonoBehaviour
         InitializeComponent();
     }
 
-    private void OnTriggerEnter(Collider collision)
+    private void OnTriggerStay(Collider collision)
     {
         if (collision.gameObject.CompareTag(PlayerTag))
         {
-            if (_visionB.IsInVision(collision.gameObject))
-            {
-                Debug.Log("Player in vision");
-                OnRange = true;
-                CheckEndingConditions();
-            }
-        }
-    }
-
-    private void OnTriggerExit(Collider collision)
-    {
-        if (collision.gameObject.CompareTag(PlayerTag))
-        {
-            OnRange = false;
+            OnRange = _visionB.IsInVision(collision.gameObject);
             CheckEndingConditions();
         }
     }
@@ -60,11 +47,8 @@ public class EnemyController : MonoBehaviour
 
     private void OnCollisionExit(Collision collision)
     {
-        if (collision.gameObject.CompareTag(PlayerTag))
-        {
-            OnAttackRange = false;
-            CheckEndingConditions();
-        }
+        OnAttackRange = false;
+        CheckEndingConditions();
     }
 
     private void Update()
@@ -73,7 +57,7 @@ public class EnemyController : MonoBehaviour
         {
             _healthC.TakeDamage(ReceiveDamage);
         }
-
+        Debug.Log(_currentNode.name);
         _currentNode.OnStateUpdate(this);
     }
 
