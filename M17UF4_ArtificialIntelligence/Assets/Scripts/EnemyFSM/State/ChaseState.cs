@@ -12,11 +12,11 @@ public class ChaseState : StateSO
 
     public override void OnStateExit(EnemyController ec)
     {
-        ec.ChaseB.StopChasing();
+        ec.MovementB.StopAgent();
     }
 
     public override void OnStateUpdate(EnemyController ec)
     {
-        ec.ChaseB.Chase(ec.Target.transform);
+        ec.MovementB.Chase(ec.Target.transform);
     }
 }

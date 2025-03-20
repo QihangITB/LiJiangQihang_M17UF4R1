@@ -9,8 +9,7 @@ public class EnemyController : MonoBehaviour
     const float ReceiveDamage = 10;
 
     private HealthController _healthC;
-    private ChaseBehaviour _chaseB;
-    private PatrolBehaviour _patrolB;
+    private MovementBehaviour _movementB;
     private VisionBehaviour _visionB;
     private StateSO _currentNode;
     public List<StateSO> Nodes;
@@ -18,9 +17,7 @@ public class EnemyController : MonoBehaviour
     public bool OnRange = false, OnAttackRange = false;
 
     public HealthController HealthC { get => _healthC; set => _healthC = value; }
-    public ChaseBehaviour ChaseB { get => _chaseB; set => _chaseB = value; }
-    public PatrolBehaviour PatrolB { get => _patrolB; set => _patrolB = value; }
-
+    public MovementBehaviour MovementB { get => _movementB; set => _movementB = value; }
 
     void Start()
     {
@@ -64,8 +61,7 @@ public class EnemyController : MonoBehaviour
     private void InitializeComponent()
     {
         _healthC = GetComponent<HealthController>();
-        _chaseB = GetComponent<ChaseBehaviour>();
-        _patrolB = GetComponent<PatrolBehaviour>();
+        _movementB = GetComponent<MovementBehaviour>();
         _visionB = GetComponent<VisionBehaviour>();
 
         _currentNode = Nodes[Nodes.Count - 1];

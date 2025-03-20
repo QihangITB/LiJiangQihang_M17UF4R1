@@ -6,16 +6,16 @@ public class IdleState : StateSO
 {
     public override void OnStateEnter(EnemyController ec)
     {
-        ec.PatrolB.StartPatrol();
+        ec.MovementB.StartAgent();
     }
 
     public override void OnStateExit(EnemyController ec)
     {
-        ec.PatrolB.StopPatrol();
+        ec.MovementB.StopAgent();
     }
 
     public override void OnStateUpdate(EnemyController ec)
     {
-        ec.PatrolB.Patrol();
+        ec.MovementB.Patrol();
     }
 }

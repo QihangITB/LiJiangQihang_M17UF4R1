@@ -10,11 +10,10 @@ public class RunState : StateSO
 
     public override void OnStateExit(EnemyController ec)
     {
-        ec.ChaseB.StopChasing();
     }
 
     public override void OnStateUpdate(EnemyController ec)
     {
-        ec.ChaseB.Run(ec.Target.transform);
+        ec.MovementB.Run(ec.Target.transform);
     }
 }

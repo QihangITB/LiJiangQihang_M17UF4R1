@@ -3,11 +3,15 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
 
-public class PatrolBehaviour : MonoBehaviour
+public class MovementBehaviour : MonoBehaviour
 {
+    const float Double = 2f;
+
+    public float Speed;
     public List<Transform> Waypoints;
-    public float MinDistanceToWaypoint = 0.5f;
-    public float WaitTime = 1f;
+    public float MinDistanceToWaypoint;
+    public float WaitTime;
+
     private NavMeshAgent _agent;
     private bool _isPatrolling = false; 
 
@@ -16,12 +20,12 @@ public class PatrolBehaviour : MonoBehaviour
         _agent = GetComponent<NavMeshAgent>();
     }
 
-    public void StartPatrol()
+    public void StartAgent()
     {
         _isPatrolling = false;
     }
 
-    public void StopPatrol()
+    public void StopAgent()
     {
         _agent.ResetPath();
     }
@@ -53,5 +57,21 @@ public class PatrolBehaviour : MonoBehaviour
     private Transform GetRandomWaypoint()
     {
         return Waypoints[Random.Range(0, Waypoints.Count)];
+    }
+
+    public void Run(Transform target)
+    {
+        Vector3 direction = (transform.position - target.position).normalized;
+        direction.y = 0;
+
+        _agent.Move(direction * Speed * Time.deltaTime);
+
+        Quaternion targetRotation = Quaternion.LookRotation(direction);
+        transform.rotation = Quaternion.Slerp(transform.rotation, targetRotation, Time.deltaTime * Speed * Double);
+    }
+
+    public void Chase(Transform target)
+    {
+        _agent.SetDestination(target.position);
     }
 }

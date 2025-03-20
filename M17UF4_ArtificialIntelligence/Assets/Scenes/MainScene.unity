@@ -1468,7 +1468,7 @@ SphereCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Radius: 20
+  m_Radius: 10
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &898936809
 GameObject:
@@ -2793,7 +2793,6 @@ GameObject:
   - component: {fileID: 1998653670}
   - component: {fileID: 1998653677}
   - component: {fileID: 1998653676}
-  - component: {fileID: 1998653679}
   - component: {fileID: 1998653678}
   - component: {fileID: 1998653680}
   - component: {fileID: 1998653674}
@@ -2818,7 +2817,7 @@ Transform:
   m_GameObject: {fileID: 1998653669}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -0.75, y: 1.35, z: -4.98}
+  m_LocalPosition: {x: 7.39, y: 1.35, z: -2.85}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -2996,6 +2995,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d43221932a09c0249b5727e58045e472, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  Speed: 2
   Waypoints:
   - {fileID: 2057573570}
   - {fileID: 596720544}
@@ -3009,19 +3009,6 @@ MonoBehaviour:
   - {fileID: 2016325851}
   MinDistanceToWaypoint: 0.5
   WaitTime: 2
---- !u!114 &1998653679
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1998653669}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4395023a6b981d741998c6601a1bfef5, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  Speed: 2
 --- !u!114 &1998653680
 MonoBehaviour:
   m_ObjectHideFlags: 0
