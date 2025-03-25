@@ -5,8 +5,17 @@ using UnityEngine;
 
 public class VisionBehaviour : MonoBehaviour
 {
-    private const float Half = 2f;
+    const float Half = 2f;
+
+    public Transform VisionLine;
     public float VisionAngle = 90f;
+
+    private SphereCollider _sC;
+
+    private void Start()
+    {
+        _sC = gameObject.GetComponentInChildren<SphereCollider>();
+    }
 
     private void Update()
     {
@@ -15,16 +24,22 @@ public class VisionBehaviour : MonoBehaviour
 
     public bool IsInVision(GameObject player)
     {
-        Vector3 directionToPlayer = player.transform.position - transform.position;
-        directionToPlayer.y = 0;
+        Vector3 origin = transform.position;
+        Vector3 destiny = player.transform.position;
+        origin.y = destiny.y = VisionLine.position.y;
+
+        Vector3 directionToPlayer = destiny - origin;
+
         float angleToPlayer = Vector3.Angle(transform.forward, directionToPlayer);
 
-        // Si el jugador está dentro del ángulo de visión
+        Debug.DrawRay(origin, directionToPlayer * _sC.radius ,Color.yellow);
+
         if (angleToPlayer <= VisionAngle / Half)
         {
             RaycastHit hit;
-            if (Physics.Raycast(transform.position, directionToPlayer.normalized, out hit))
+            if (Physics.Raycast(origin, directionToPlayer, out hit, _sC.radius))
             {
+                Debug.Log("Collisiona con: " + hit.collider.tag);
                 if (hit.collider.CompareTag(player.tag))
                 {
                     return true;
@@ -36,10 +51,8 @@ public class VisionBehaviour : MonoBehaviour
 
     void DrawVisionLines()
     {
-        SphereCollider _sC = gameObject.GetComponentInChildren<SphereCollider>();
-
-        Vector3 leftDirection = Quaternion.Euler(0, -45, 0) * transform.forward;
-        Vector3 rightDirection = Quaternion.Euler(0, 45, 0) * transform.forward;
+        Vector3 leftDirection = Quaternion.Euler(0, -(VisionAngle/Half), 0) * transform.forward;
+        Vector3 rightDirection = Quaternion.Euler(0, (VisionAngle / Half), 0) * transform.forward;
 
         Debug.DrawRay(transform.position, leftDirection * _sC.radius, Color.red);
         Debug.DrawRay(transform.position, rightDirection * _sC.radius, Color.red);

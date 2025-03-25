@@ -18,6 +18,7 @@ public class EnemyController : MonoBehaviour
 
     public HealthController HealthC { get => _healthC; set => _healthC = value; }
     public MovementBehaviour MovementB { get => _movementB; set => _movementB = value; }
+    public VisionBehaviour VisionB { get => _visionB; set => _visionB = value; }
 
     void Start()
     {
@@ -28,7 +29,16 @@ public class EnemyController : MonoBehaviour
     {
         if (collision.gameObject.CompareTag(PlayerTag))
         {
-            OnRange = _visionB.IsInVision(collision.gameObject);
+            OnRange = _visionB.IsInVision(Target);
+            CheckEndingConditions();
+        }
+    }
+
+    private void OnTriggerExit(Collider collision)
+    {
+        if (collision.gameObject.CompareTag(PlayerTag))
+        {
+            OnRange = false;
             CheckEndingConditions();
         }
     }
