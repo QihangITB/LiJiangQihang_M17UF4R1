@@ -37,7 +37,7 @@ public class MovementBehaviour : MonoBehaviour
         if (HasArrivedToWaypoint() && !_isPatrolling)
         {
             Transform destination = GetRandomWaypoint();
-            StartCoroutine(WaitAndSetDestination(destination.position));
+            StartCoroutine(WaitAndSetDestination(destination.position, WaitTime));
         }
     }
 
@@ -47,7 +47,7 @@ public class MovementBehaviour : MonoBehaviour
         {
             int randomIndex = Random.Range(0, _circlePoints.Length);
             Vector3 destination = _circlePoints[randomIndex];
-            StartCoroutine(WaitAndSetDestination(destination));
+            StartCoroutine(WaitAndSetDestination(destination, WaitTime/Double));
         }
     }
     private Vector3[] GetPatrolPoints(Vector3 center, float distance)
@@ -71,11 +71,11 @@ public class MovementBehaviour : MonoBehaviour
         return _agent.remainingDistance < MinDistanceToWaypoint;
     }
 
-    private IEnumerator WaitAndSetDestination(Vector3 destination)
+    private IEnumerator WaitAndSetDestination(Vector3 destination, float time)
     {
         _isPatrolling = true;
 
-        yield return new WaitForSeconds(WaitTime);
+        yield return new WaitForSeconds(time);
 
         _agent.SetDestination(destination);
 
