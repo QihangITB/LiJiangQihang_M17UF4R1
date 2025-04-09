@@ -16,6 +16,13 @@ public class IdleState : StateSO
 
     public override void OnStateUpdate(EnemyController ec)
     {
-        ec.MovementB.Patrol();
+        if (ec.HealthC.Health < ec.HealthC.MaxHealth)
+        {
+            ec.MovementB.PatrolASpecificPoint();
+        }
+        else
+        {
+            ec.MovementB.Patrol();
+        }
     }
 }

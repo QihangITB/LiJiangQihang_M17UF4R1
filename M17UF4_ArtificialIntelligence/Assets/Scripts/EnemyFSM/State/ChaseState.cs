@@ -11,14 +11,7 @@ public class ChaseState : StateSO
 
     public override void OnStateExit(EnemyController ec)
     {
-        if (ec.VisionB.IsInVision(ec.Target))
-        {
-            ec.MovementB.Chase(ec.Target.transform);
-        }
-        else
-        {
-            ec.MovementB.StopAgent();
-        }
+        ec.MovementB.Chase(ec.Target.transform);
     }
 
     public override void OnStateUpdate(EnemyController ec)

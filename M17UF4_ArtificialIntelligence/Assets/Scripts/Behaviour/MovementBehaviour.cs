@@ -14,6 +14,7 @@ public class MovementBehaviour : MonoBehaviour
 
     private NavMeshAgent _agent;
     private bool _isPatrolling = false;
+    private Vector3[] _circlePoints;
 
     private void Awake()
     {
@@ -23,6 +24,7 @@ public class MovementBehaviour : MonoBehaviour
     public void StartAgent()
     {
         _isPatrolling = false;
+        _circlePoints = GetPatrolPoints(_agent.destination, 2f);
     }
 
     public void StopAgent()
@@ -35,8 +37,33 @@ public class MovementBehaviour : MonoBehaviour
         if (HasArrivedToWaypoint() && !_isPatrolling)
         {
             Transform destination = GetRandomWaypoint();
-            StartCoroutine(WaitAndSetDestination(destination.position));
+            StartCoroutine(WaitAndSetDestination(destination.position, WaitTime));
         }
+    }
+
+    public void PatrolASpecificPoint()
+    {
+        if (HasArrivedToWaypoint() && !_isPatrolling)
+        {
+            int randomIndex = Random.Range(0, _circlePoints.Length);
+            Vector3 destination = _circlePoints[randomIndex];
+            StartCoroutine(WaitAndSetDestination(destination, WaitTime/Double));
+        }
+    }
+    private Vector3[] GetPatrolPoints(Vector3 center, float distance)
+    {
+        Vector3[] points = new Vector3[8];
+
+        points[0] = center + new Vector3(0, 0, distance);           // Arriba
+        points[1] = center + new Vector3(distance, 0, 0);           // Derecha
+        points[2] = center + new Vector3(0, 0, -distance);          // Abajo
+        points[3] = center + new Vector3(-distance, 0, 0);          // Izquierda
+        points[4] = center + new Vector3(distance, 0, distance);    // Arriba-Derecha
+        points[5] = center + new Vector3(-distance, 0, distance);   // Arriba-Izquierda
+        points[6] = center + new Vector3(distance, 0, -distance);   // Abajo-Derecha
+        points[7] = center + new Vector3(-distance, 0, -distance);  // Abajo-Izquierda
+
+        return points;
     }
 
     private bool HasArrivedToWaypoint()
@@ -44,11 +71,11 @@ public class MovementBehaviour : MonoBehaviour
         return _agent.remainingDistance < MinDistanceToWaypoint;
     }
 
-    private IEnumerator WaitAndSetDestination(Vector3 destination)
+    private IEnumerator WaitAndSetDestination(Vector3 destination, float time)
     {
         _isPatrolling = true;
 
-        yield return new WaitForSeconds(WaitTime);
+        yield return new WaitForSeconds(time);
 
         _agent.SetDestination(destination);
 
@@ -65,7 +92,7 @@ public class MovementBehaviour : MonoBehaviour
         Vector3 direction = (transform.position - target.position).normalized;
         direction.y = 0;
 
-        _agent.Move(direction * Speed * Time.deltaTime);
+        _agent.SetDestination( transform.position + direction * 10f );
 
         Quaternion targetRotation = Quaternion.LookRotation(direction);
         transform.rotation = Quaternion.Slerp(transform.rotation, targetRotation, Time.deltaTime * Speed * Double);

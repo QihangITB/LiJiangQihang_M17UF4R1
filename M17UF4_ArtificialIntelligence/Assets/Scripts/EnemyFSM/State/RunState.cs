@@ -6,6 +6,7 @@ public class RunState : StateSO
 {
     public override void OnStateEnter(EnemyController ec)
     {
+        ec.MovementB.StopAgent();
     }
 
     public override void OnStateExit(EnemyController ec)

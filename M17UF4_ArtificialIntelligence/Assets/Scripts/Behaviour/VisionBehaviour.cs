@@ -28,23 +28,25 @@ public class VisionBehaviour : MonoBehaviour
         Vector3 destiny = player.transform.position;
         origin.y = destiny.y = VisionLine.position.y;
 
-        Vector3 directionToPlayer = destiny - origin;
+        Vector3 directionToPlayer = (destiny - origin).normalized;
 
         float angleToPlayer = Vector3.Angle(transform.forward, directionToPlayer);
 
-        Debug.DrawRay(origin, directionToPlayer * _sC.radius ,Color.yellow);
-
         if (angleToPlayer <= VisionAngle / Half)
         {
-            RaycastHit hit;
-            if (Physics.Raycast(origin, directionToPlayer, out hit, _sC.radius))
+            Physics.Raycast(origin, directionToPlayer, out RaycastHit hit, _sC.radius);
+
+            if (hit.collider != null)
             {
-                Debug.Log("Collisiona con: " + hit.collider.tag);
-                if (hit.collider.CompareTag(player.tag))
+                Debug.DrawLine(origin, hit.point, Color.yellow);
+                Debug.Log("collision: " + hit.collider.gameObject.name);
+
+                if (hit.collider.gameObject == player)
                 {
                     return true;
                 }
             }
+
         }
         return false;
     }
